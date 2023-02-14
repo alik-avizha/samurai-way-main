@@ -5,7 +5,7 @@ const Header = () => {
     return (
     <header className={classes.header}>
         <img
-            src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/900px-Facebook_Logo_%282019%29.png'/>
+            src='https://papik.pro/uploads/posts/2022-01/1643617381_1-papik-pro-p-logotip-treugolnik-1.jpg'/>
     </header>
     );
 }
