@@ -1,3 +1,31 @@
-ul li {
-  list-style-type: armenian;
+.app-wrapper {
+    margin: 0 auto;
+    display: grid;
+    width: 1200px;
+    grid-template-areas:
+     "h h" /* первая строка имеет два header*/
+     "n c"; /* вторая строка имеет nav and content*/
+
+    grid-template-rows: 60px 1fr; /*две строки*/
+    grid-template-columns: 2fr 10fr; /*две колонки*/
+    grid-gap: 10px;
+}
+
+.header {
+    grid-area: h;
+    background-color: green;
+}
+
+.header img {
+    width: 48px;
+}
+
+.nav {
+    grid-area: n;
+    background-color: brown;
+}
+
+.content {
+    grid-area: c;
+    background-color: aquamarine;
 }
