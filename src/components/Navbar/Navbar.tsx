@@ -1,43 +1,32 @@
 import React from 'react';
 import classes from './Navbar.module.css';
 
-/*let classes = {
-    'nav': 'Navbar_nav__bIR\\+Y',
-    'item': 'Navbar_item__rdg03',
-    'active: 'fsdsdgs'
-}*/
-
-/*let cl1 = 'item';
-let cl2 = 'active';*/
-//item active
-/*let sum = cl1+' '+cl2;
-let sumNew = `${classes.item} ${classes.active}`;*/
 
 const Navbar = () => {
     return (
         <nav className={classes.nav}>
             <div className={classes.item}>
-                <a>
+                <a href="/Profile">
                     Profile
                 </a>
             </div>
             <div className={`${classes.item} ${classes.active}`}>
-                <a>
+                <a href="/Messages">
                     Messages
                 </a>
             </div>
             <div className={classes.item}>
-                <a>
+                <a href="/News">
                     News
                 </a>
             </div>
             <div className={classes.item}>
-                <a>
+                <a href="/Music">
                     Music
                 </a>
             </div>
             <div className={classes.item}>
-                <a>
+                <a href="/Settings">
                     Settings
                 </a>
             </div>
