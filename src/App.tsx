@@ -8,6 +8,7 @@ import Messages from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
+import Dialogs from "./components/Dialogs/Dialogs";
 
 const App = () => {
     return (
@@ -17,7 +18,7 @@ const App = () => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/Profile' component={Profile}/>
-                    <Route path='/Messages' component={Messages}/>
+                    <Route path='/Messages' component={Dialogs}/>
                     <Route path='/News' component={News}/>
                     <Route path='/Music' component={Music}/>
                     <Route path='/Settings' component={Settings}/>
