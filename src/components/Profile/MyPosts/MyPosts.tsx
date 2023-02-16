@@ -1,23 +1,19 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import classes from './MyPosts.module.css';
 import Post from "./Post/Post";
 
-const MyPosts = () => {
 
-    let posts = [
-        {
-            id: 1,
-            message: 'Hi, how are you?',
-            likesCount: 23
-        },
-        {
-            id: 2,
-            message: 'It\'s my first post',
-            likesCount: 5
-        },
-    ]
-    let postsElement = posts
-        .map(p => <Post message={p.message} likesCount={p.likesCount}/>)
+const MyPosts = (props: any) => {
+
+    let postsElement = props.posts.map((p: { message: string; likesCount: number; }) => <Post message={p.message}
+                                                                                              likesCount={p.likesCount}/>)
+
+    let newPostElement = useRef<HTMLTextAreaElement>(null)
+    const addPost = () => {
+        if (newPostElement.current !== null) {
+            alert(newPostElement.current.value)
+        }
+    }
 
 
     return (
@@ -25,10 +21,10 @@ const MyPosts = () => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea></textarea>
+                    <textarea ref={newPostElement}></textarea>
                 </div>
                 <div>
-                    <button>Send</button>
+                    <button onClick={addPost}>Send</button>
                 </div>
             </div>
             <div className={classes.posts}>
@@ -36,6 +32,6 @@ const MyPosts = () => {
             </div>
         </div>
     )
-}
+};
 export default MyPosts;
 

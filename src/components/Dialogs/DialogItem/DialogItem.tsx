@@ -11,6 +11,7 @@ const DialogItem = (props: DialogItemPropsType) => {
     return (
         <div className={classes.dialog + ' ' + classes.active}>
             <NavLink to={'/Messages/' + props.id}>{props.name}</NavLink>
+            <img src='https://www.pngall.com/wp-content/uploads/12/Male-Face-PNG.png' />
         </div>
     )
 }
