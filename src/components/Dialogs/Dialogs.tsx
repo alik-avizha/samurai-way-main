@@ -1,34 +1,12 @@
 import React from 'react';
 import classes from './Dialogs.module.css';
-import {NavLink} from "react-router-dom";
+import Message from "./Message/Message";
+import DialogItem from "./DialogItem/DialogItem";
 
-
-type DialogItemPropsType = {
-    name: string,
-    id: number
-}
-
-const DialogItem = (props: DialogItemPropsType) => {
-    return (
-        <div className={classes.dialog + ' ' + classes.active}>
-            <NavLink to={'/Messages/' + props.id}>{props.name}</NavLink>
-        </div>
-    )
-}
-
-type MessagePropsType = {
-    message: string
-}
-
-const Message = (props: MessagePropsType) => {
-    return (
-        <div className={classes.message}>{props.message}</div>
-    )
-}
 
 const Dialogs = () => {
 
-    let dialogsData = [
+    let dialogs = [
         {
             id: 1,
             name: 'Aleksandr'
@@ -50,7 +28,7 @@ const Dialogs = () => {
             name: 'Dima'
         }
     ]
-    let messagesData = [
+    let messages = [
         {
             id: 1,
             message: 'Hi'
@@ -73,27 +51,22 @@ const Dialogs = () => {
         }
     ]
 
+    //Метод map для преобразования одного массива в другой
+    let dialogsElements = dialogs
+        .map((d) => <DialogItem name={d.name} id={d.id}/>)
+    let messagesElements = messages
+        .map((m) => <Message message={m.message}/>)
 
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
-                <DialogItem name={dialogsData[0].name} id={dialogsData[0].id}/>
-                <DialogItem name={dialogsData[1].name} id={dialogsData[1].id}/>
-                {/*<DialogItem name="Nikita" id={2}/>
-                <DialogItem name="Denis" id={3}/>
-                <DialogItem name="Kolya" id={4}/>
-                <DialogItem name="Dima" id={5}/>*/}
+                {dialogsElements}
             </div>
             <div className={classes.messages}>
-                <Message message={messagesData[0].message}/>
-                <Message message={messagesData[1].message}/>
-                {/*<Message message={messagesData[2].message}/>
-                <Message message={messagesData[3].message}/>
-                <Message message={messagesData[4].message}/>*/}
+                {messagesElements}
             </div>
         </div>
     )
 }
-
 export default Dialogs;
 
