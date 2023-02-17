@@ -1,27 +1,35 @@
 import React, {useRef} from 'react';
 import classes from './MyPosts.module.css';
 import Post from "./Post/Post";
+import {updateNewPostText} from "../../../redux/state";
 
 
 const MyPosts = (props: any) => {
 
-    let postsElement = props.posts.map((p: { message: string; likesCount: number; }) => <Post message={p.message}
-                                                                                              likesCount={p.likesCount}/>)
+    let postsElement = props.posts.map((p: any) => <Post message={p.message}
+                                                         likesCount={p.likesCount}/>)
 
     let newPostElement = useRef<HTMLTextAreaElement>(null)
+
     const addPost = () => {
         if (newPostElement.current !== null) {
-            alert(newPostElement.current.value)
+            props.addPost()
         }
     }
-
+    let opPostChange = () => {
+        if (newPostElement.current !== null) {
+            props.updateNewPostText(newPostElement.current.value)
+        }
+    }
 
     return (
         <div className={classes.postBlock}>
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea ref={newPostElement}
+                              onChange={opPostChange}
+                              value={props.newPostText}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Send</button>

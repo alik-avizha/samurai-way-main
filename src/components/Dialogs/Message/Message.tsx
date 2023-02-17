@@ -12,6 +12,7 @@ const Message = (props: MessagePropsType) => {
             <div className={classes.message}>{props.message}</div>
 
         </div>
+
     )
 }
 

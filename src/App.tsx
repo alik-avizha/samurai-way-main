@@ -9,15 +9,18 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import Dialogs from "./components/Dialogs/Dialogs";
 
-const App = (props: any) => {
 
+
+const App = (props: any) => {
     return (
         <div className='app-wrapper'>
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path='/Profile' render={() => <Profile
-                    state={props.state.profilePage}/>}/>
+                    profilePage={props.state.profilePage}
+                    updateNewPostText={props.updateNewPostText}
+                    addPost={props.addPost}/>}/>
                 <Route path='/Messages' render={() => <Dialogs
                     state={props.state.dialogsPage}/>}/>
                 <Route path='/News' render={() => <News/>}/>
