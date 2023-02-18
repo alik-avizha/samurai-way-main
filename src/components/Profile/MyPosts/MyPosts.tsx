@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import classes from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {updateNewPostText} from "../../../redux/state";
+
 
 
 const MyPosts = (props: any) => {

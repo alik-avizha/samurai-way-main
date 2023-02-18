@@ -10,7 +10,6 @@ import Settings from "./components/Settings/Settings";
 import Dialogs from "./components/Dialogs/Dialogs";
 
 
-
 const App = (props: any) => {
     return (
         <div className='app-wrapper'>
@@ -22,7 +21,10 @@ const App = (props: any) => {
                     updateNewPostText={props.updateNewPostText}
                     addPost={props.addPost}/>}/>
                 <Route path='/Messages' render={() => <Dialogs
-                    state={props.state.dialogsPage}/>}/>
+                    updateNewMessageText={props.updateNewMessageText}
+                    addMessage={props.addMessage}
+                    dialogsPage={props.state.dialogsPage}
+                />}/>
                 <Route path='/News' render={() => <News/>}/>
                 <Route path='/Music' render={() => <Music/>}/>
                 <Route path='/Settings' render={() => <Settings/>}/>

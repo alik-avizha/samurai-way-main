@@ -60,12 +60,13 @@ let state = {
                 id: 5,
                 name: 'Dima'
             }
-        ]
+        ],
+        newMessageText: 'My new message'
     }
 }
 
 export let addPost = () => {
-        let newPost = {
+    let newPost = {
         id: 5,
         message: state.profilePage.newPostText,
         likesCount: 0
@@ -80,6 +81,20 @@ export let updateNewPostText = (newText: string) => {
     rerenderEntireTree(state);
 }
 
+export let addMessage = () => {
+    let newMessage = {
+        id: 6,
+        message: state.dialogsPage.newMessageText,
+    };
+    state.dialogsPage.messages.push(newMessage);
+    state.dialogsPage.newMessageText = '';
+    rerenderEntireTree(state);
+}
+
+export let updateNewMessageText = (newText: string) => {
+    state.dialogsPage.newMessageText = newText
+    rerenderEntireTree(state);
+}
 
 
 export default state;

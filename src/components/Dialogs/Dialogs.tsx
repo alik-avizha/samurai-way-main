@@ -7,18 +7,23 @@ import DialogItem from "./DialogItem/DialogItem";
 const Dialogs = (props: any) => {
 
     //Метод map для преобразования одного массива в другой
-    let dialogsElements = props.state.dialogs
+    let dialogsElements = props.dialogsPage.dialogs
         .map((d: { name: string; id: number; }) => <DialogItem name={d.name} id={d.id}/>)
-    let messagesElements = props.state.messages
+    let messagesElements = props.dialogsPage.messages
         .map((m: { message: string; }) => <Message message={m.message}/>)
 
     let newMessageElement = useRef<HTMLTextAreaElement>(null)
+
     const addMessage = () => {
         if (newMessageElement.current !== null) {
-            alert(newMessageElement.current.value)
+            props.addMessage();
         }
     }
-
+    let opMessageChange = () => {
+        if (newMessageElement.current !== null) {
+            props.updateNewMessageText(newMessageElement.current.value)
+        }
+    }
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
@@ -26,8 +31,14 @@ const Dialogs = (props: any) => {
             </div>
             <div className={classes.messages}>
                 {messagesElements}
-                <textarea ref={newMessageElement}></textarea>
-                <button onClick={addMessage} >add message</button>
+                <div>
+                  <textarea ref={newMessageElement}
+                            onChange={opMessageChange}
+                            value={props.dialogsPage.newMessageText}/>
+                </div>
+                <div>
+                    <button onClick={addMessage}>add message</button>
+                </div>
             </div>
         </div>
     )
