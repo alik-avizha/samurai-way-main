@@ -3,7 +3,6 @@ import classes from './MyPosts.module.css';
 import Post from "./Post/Post";
 
 
-
 const MyPosts = (props: any) => {
 
     let postsElement = props.posts.map((p: any) => <Post message={p.message}
@@ -21,7 +20,6 @@ const MyPosts = (props: any) => {
             props.updateNewPostText(newPostElement.current.value)
         }
     }
-
     return (
         <div className={classes.postBlock}>
             <h3>My posts</h3>
@@ -32,7 +30,7 @@ const MyPosts = (props: any) => {
                               value={props.newPostText}/>
                 </div>
                 <div>
-                    <button onClick={addPost}>Send</button>
+                    <button onClick={addPost}>add post</button>
                 </div>
             </div>
             <div className={classes.posts}>
