@@ -12,12 +12,15 @@ const MyPosts = (props: any) => {
 
     const addPost = () => {
         if (newPostElement.current !== null) {
-            props.addPost()
+            /*props.addPost()*/
+            props.dispatch({type: 'ADD-POST'})
         }
     }
     let opPostChange = () => {
         if (newPostElement.current !== null) {
-            props.updateNewPostText(newPostElement.current.value)
+            /*props.updateNewPostText(newPostElement.current.value)*/
+            let action = {type: 'UPDATE-NEW-POST-TEXT', newText: newPostElement.current.value}
+            props.dispatch(action)
         }
     }
     return (
