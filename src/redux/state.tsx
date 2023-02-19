@@ -21,28 +21,6 @@ let store = {
             newPostText: 'My new post'
         },
         dialogsPage: {
-            messages: [
-                {
-                    id: 1,
-                    message: 'Hi'
-                },
-                {
-                    id: 2,
-                    message: 'How are you?'
-                },
-                {
-                    id: 3,
-                    message: 'Where are you from?'
-                },
-                {
-                    id: 4,
-                    message: 'Why?'
-                },
-                {
-                    id: 5,
-                    message: 'When do you meet?'
-                }
-            ],
             dialogs: [
                 {
                     id: 1,
@@ -65,7 +43,29 @@ let store = {
                     name: 'Dima'
                 }
             ],
-            newMessageText: 'My new message'
+            messages: [
+                {
+                    id: 1,
+                    message: 'Hi'
+                },
+                {
+                    id: 2,
+                    message: 'How are you?'
+                },
+                {
+                    id: 3,
+                    message: 'Where are you from?'
+                },
+                {
+                    id: 4,
+                    message: 'Why?'
+                },
+                {
+                    id: 5,
+                    message: 'When do you meet?'
+                }
+            ],
+            newMessageText: ''
         }
     },
     _callSubscriber() {
