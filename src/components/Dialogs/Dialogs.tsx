@@ -1,14 +1,11 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import classes from './Dialogs.module.css';
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
-import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/dialogs-reducer";
-
-
 
 const Dialogs = (props: any) => {
 
-    let state = props.store.getState().dialogsPage;
+    let state = props.dialogsPage;
 
     //Метод map для преобразования одного массива в другой
     let dialogsElements = state.dialogs
@@ -18,28 +15,12 @@ const Dialogs = (props: any) => {
 
     let newMessageText = state.newMessageText;
 
-    /*let newMessageElement = useRef<HTMLTextAreaElement>(null)*/
-
-/*    const addMessage = () => {
-        if (newMessageElement.current !== null) {
-            /!*props.addMessage();*!/
-            props.dispatch(addMessageActionCreator())
-        }
-    }
-    let opMessageChange = () => {
-        if (newMessageElement.current !== null) {
-            let text = newMessageElement.current.value
-            /!*props.updateNewMessageText(newMessageElement.current.value)*!/
-            let action = updateNewMessageTextActionCreator(text)
-            props.dispatch(action)
-        }
-    }*/
     let addMessage = () => {
-        props.store.dispatch(addMessageActionCreator())
+        props.addMessage();
     }
     let opMessageChange = (e: { target: any; }) => {
       let text = e.target.value;
-      props.store.dispatch(updateNewMessageTextActionCreator(text))
+      props.updateNewMessageText(text);
     }
 
     return (
@@ -52,10 +33,8 @@ const Dialogs = (props: any) => {
                 <div>
                     <div>
                          <textarea
-                            /*ref={newMessageElement}*/
                             placeholder='Enter your message'
                             onChange={opMessageChange}
-                            /*value={props.dialogsPage.newMessageText}*/
                             value={newMessageText}
                          />
                     </div>

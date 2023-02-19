@@ -1,10 +1,6 @@
 import React, {useRef} from 'react';
 import classes from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
-
-
-
 
 const MyPosts = (props: any) => {
 
@@ -13,19 +9,15 @@ const MyPosts = (props: any) => {
 
     let newPostElement = useRef<HTMLTextAreaElement>(null)
 
-    const addPost = () => {
+    const onAddPost = () => {
         if (newPostElement.current !== null) {
-            /*props.addPost()*/
-            props.dispatch(addPostActionCreator())
+            props.addPost()
         }
     }
     let opPostChange = () => {
         if (newPostElement.current !== null) {
             let text = newPostElement.current.value
-            /*props.updateNewPostText(newPostElement.current.value)*/
-            /*let action = {type: 'UPDATE-NEW-POST-TEXT', newText: newPostElement.current.value}*/
-            let action = updateNewPostTextActionCreator(text)
-            props.dispatch(action)
+            props.updateNewPostText(text)
         }
     }
     return (
@@ -38,7 +30,7 @@ const MyPosts = (props: any) => {
                               value={props.newPostText}/>
                 </div>
                 <div>
-                    <button onClick={addPost}>add post</button>
+                    <button onClick={onAddPost}>add post</button>
                 </div>
             </div>
             <div className={classes.posts}>
