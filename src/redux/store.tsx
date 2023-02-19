@@ -2,7 +2,6 @@ import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import profileReducer from "./profile-reducer";
 
-
 let store = {
     _state: {
         profilePage: {
@@ -72,7 +71,6 @@ let store = {
     _callSubscriber() {
         console.log('state changed')
     },
-
     getState() {
         return this._state;
     },
@@ -93,5 +91,3 @@ let store = {
 
 export default store;
 
-export class updateNewPostTextActionCreator {
-}
