@@ -9,9 +9,9 @@ const Dialogs = (props: any) => {
 
     //Метод map для преобразования одного массива в другой
     let dialogsElements = state.dialogs
-        .map((d: { name: string; id: number; }) => <DialogItem name={d.name} id={d.id}/>)
+        .map((d: { name: string; id: number; }) => <DialogItem name={d.name} key={d.id} id={d.id}/>)
     let messagesElements = state.messages
-        .map((m: { message: string; }) => <Message message={m.message}/>)
+        .map((m: {id: number; message: string; }) => <Message message={m.message} key={m.id}/>)
 
     let newMessageText = state.newMessageText;
 
