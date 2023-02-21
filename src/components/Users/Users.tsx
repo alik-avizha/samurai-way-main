@@ -1,45 +1,13 @@
 import React from 'react';
 import classes from './users.module.css'
-
+import axios from "axios";
+import userPhoto from '../../assets/images/user.png'
 
 let Users = (props: any) => {
     if (props.users.length === 0) {
-        props.setUsers([
-                {
-                    id: 1,
-                    fullName: 'Aleksandr',
-                    followed: false,
-                    photoUrl: 'https://feo.travel/wp-content/uploads/2018/04/Aleksandr-3-768x539.jpg',
-                    status: 'I am programmer',
-                    location: {
-                        city: 'Minsk',
-                        country: 'Belarus'
-                    }
-                },
-                {
-                    id: 2,
-                    fullName: 'Denis',
-                    followed: true,
-                    photoUrl: 'https://feo.travel/wp-content/uploads/2018/04/Aleksandr-3-768x539.jpg',
-                    status: 'I am programmer too',
-                    location: {
-                        city: 'Omsk',
-                        country: 'Russia'
-                    }
-                },
-                {
-                    id: 3,
-                    fullName: 'Nikita',
-                    followed: false,
-                    photoUrl: 'https://feo.travel/wp-content/uploads/2018/04/Aleksandr-3-768x539.jpg',
-                    status: 'I am programmer too',
-                    location: {
-                        city: 'Kiev',
-                        country: 'Ukraine'
-                    }
-                }
-            ]
-        )
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+            props.setUsers(response.data.items)
+        });
     }
     return (
         <div>
@@ -47,7 +15,7 @@ let Users = (props: any) => {
                 props.users.map((u: any) => <div key={u.id}>
                 <span>
                     <div>
-                        <img src={u.photoUrl} className={classes.userPhoto}/>
+                        <img src={u.photos.small != null ? u.photos.small : userPhoto} className={classes.userPhoto}/>
                     </div>
                     <div>
                         {u.followed
@@ -61,17 +29,16 @@ let Users = (props: any) => {
                     </div>
                 </span>
                     <span>
-                    <div>{u.fullName}</div>
+                    <div>{u.name}</div>
                     <div>{u.status}</div>
                 </span>
                     <span>
-                    <div>{u.location.country}</div>
-                    <div>{u.location.city}</div>
+                    <div>{"u.location.country"}</div>
+                    <div>{"u.location.city"}</div>
                 </span>
                 </div>)
             }
         </div>
     )
-
 }
 export default Users;

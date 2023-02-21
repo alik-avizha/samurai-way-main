@@ -5,7 +5,6 @@ const SET_USERS = 'SET_USERS';
 let initialState = {
     users: []
 };
-
 const usersReducer = (state = initialState,
                       action: {
                           userId: any;
