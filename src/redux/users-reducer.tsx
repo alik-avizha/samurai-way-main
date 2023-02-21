@@ -15,7 +15,7 @@ const usersReducer = (state = initialState,
         case FOLLOW:
             return {
                 ...state,
-                users: state.users.map(u => {
+                users: state.users.map((u: { id: any; }) => {
                     if (u.id === action.userId) {
                         return {...u, followed: true}
                     }
@@ -25,7 +25,7 @@ const usersReducer = (state = initialState,
         case UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map(u => {
+                users: state.users.map((u: { id: any; }) => {
                     if (u.id === action.userId) {
                         return {...u, followed: false}
                     }
