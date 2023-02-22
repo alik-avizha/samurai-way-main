@@ -9,6 +9,8 @@ let mapStateToProps = (state: any) => {
         dialogsPage: state.dialogsPage
     }
 }
+
+
 let mapDispatchToProps = (dispatch: any) =>  {
     return {
         updateNewMessageText: (text: string) => {
