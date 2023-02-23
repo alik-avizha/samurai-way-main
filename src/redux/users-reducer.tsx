@@ -20,7 +20,7 @@ const usersReducer = (state = initialState,
                           type: string;
                           newText: any;
                           currentPage: any;
-                          count: any;
+                          count: number;
                       }) => {
     switch (action.type) {
         case FOLLOW:
