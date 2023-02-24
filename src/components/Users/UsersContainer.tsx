@@ -1,35 +1,19 @@
 import React from "react";
 import {connect} from "react-redux";
-import {
-    follow,
-    setCurrentPage,
-    setUsers,
-    setUsersTotalCount, toggleFollowingProgress,
-    toggleIsFetching,
-    unfollow
-} from "../../redux/users-reducer";
+import {follow, getUsers, setCurrentPage, toggleFollowingProgress, unfollow} from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/preloader/Preloader";
-import {usersAPI} from "../../api/api";
-
 
 class UsersContainer extends React.Component<any, any> {
     componentDidMount() {
-        this.props.toggleIsFetching(true);
-        usersAPI.getUsers(this.props.currentPage,this.props.pageSize).then(data => {
-            this.props.toggleIsFetching(false);
-            this.props.setUsers(data.items);
-            this.props.setUsersTotalCount(data.totalCount);
-        });
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
+
     opPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber);
-        this.props.toggleIsFetching(true);
-        usersAPI.getUsers(pageNumber,this.props.pageSize).then(data => {
-            this.props.toggleIsFetching(false);
-            this.props.setUsers(data.items)
-        });
+        this.props.getUsers(pageNumber, this.props.pageSize);
     }
+
     render() {
         return (
             <>
@@ -41,13 +25,13 @@ class UsersContainer extends React.Component<any, any> {
                        users={this.props.users}
                        follow={this.props.follow}
                        unfollow={this.props.unfollow}
-                       toggleFollowingProgress={this.props.toggleFollowingProgress}
                        followingInProgress={this.props.followingInProgress}
                 />
             </>
         )
     }
 }
+
 let mapStateToProps = (state: any) => {
     return {
         users: state.usersPage.users,
@@ -59,31 +43,31 @@ let mapStateToProps = (state: any) => {
     }
 }
 
- /*
+/*
 let mapDispatchToProps = (dispatch: any) => {
-    return {
-        follow: (userId: any) => {
-            dispatch(followAC(userId));
-        },
-        unfollow: (userId: any) => {
-            dispatch(unfollowAC(userId));
-        },
-        setUsers: (users: any) => {
-            dispatch(setUsersAC(users));
-        },
-        setCurrentPage: (pageNumber: number) => {
-            dispatch(setCurrentPageAC(pageNumber));
-        },
-        setTotalUserCount: (totalCount: number) => {
-            dispatch(setUsersTotalCountAC(totalCount));
-        },
-        toggleIsFetching: (isFetching: boolean) => {
-            dispatch(toggleIsFetchingAC(isFetching));
-        }
-    }
+   return {
+       follow: (userId: any) => {
+           dispatch(followAC(userId));
+       },
+       unfollow: (userId: any) => {
+           dispatch(unfollowAC(userId));
+       },
+       setUsers: (users: any) => {
+           dispatch(setUsersAC(users));
+       },
+       setCurrentPage: (pageNumber: number) => {
+           dispatch(setCurrentPageAC(pageNumber));
+       },
+       setTotalUserCount: (totalCount: number) => {
+           dispatch(setUsersTotalCountAC(totalCount));
+       },
+       toggleIsFetching: (isFetching: boolean) => {
+           dispatch(toggleIsFetchingAC(isFetching));
+       }
+   }
 }
 */
 
 export default connect(mapStateToProps,
-    {follow,unfollow,setUsers,setCurrentPage,setUsersTotalCount,toggleIsFetching,toggleFollowingProgress})
-(UsersContainer);
+    {follow, unfollow, setCurrentPage,
+        toggleFollowingProgress,getUsers})(UsersContainer);
