@@ -77,7 +77,7 @@ export const unfollowSuccess = (userId: any) => ({type: UNFOLLOW, userId})
 
 export const setUsers = (users: any) => ({type: SET_USERS, users})
 
-export const setCurrentPage = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage: currentPage})
+export const setCurrentPage = (currentPage: number | undefined) => ({type: SET_CURRENT_PAGE, currentPage: currentPage})
 
 export const setUsersTotalCount = (totalUsersCount: number) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount})
 
@@ -91,7 +91,7 @@ export const getUsers = (currentPage: number | undefined, pageSize: number | und
         dispatch(toggleIsFetching(true));
 
         usersAPI.getUsers(currentPage, pageSize).then(data => {
-
+            dispatch(setCurrentPage(currentPage))
             dispatch(toggleIsFetching(false));
             dispatch(setUsers(data.items));
             dispatch(setUsersTotalCount(data.totalCount));
